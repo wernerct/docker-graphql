@@ -33,7 +33,7 @@ jobs:
     - name: Push Docker Image
       run: |
         echo "Iniciando Build"
-        docker image push wernerct/docker-graphql:0.0.2 .
+        docker image push wernerct/docker-graphql:0.0.2
         echo "Finalizando Build"
 #    - name: Build the Docker image
 #     run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
