@@ -24,6 +24,6 @@ jobs:
       run: |
         echo "Iniciando Login"
         docker login -u Docker_User -p Docker_Password
-        echo "Iniciando Login"
+        echo "finalizando Login"
 #    - name: Build the Docker image
 #     run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
