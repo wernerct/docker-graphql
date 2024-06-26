@@ -28,23 +28,26 @@ jobs:
       env:
         Docker_User: ${{ secrets.DOCKER_USER }}
         Docker_Password: ${{ secrets.DOCKER_PASSWORD }}
-        New_Version: ${{ steps.version.outputs.version }}
       run: |
         echo "Iniciando Login"
         docker login -u $Docker_User -p $Docker_Password
         echo "New Version:$New_Version!!!"
         echo "Finalizando Login"
-#    - name: Build Docker Image
-#      run: |
-#        echo "Iniciando Build"
-#        docker image build -t wernerct/docker-graphql:0.0.2 .
-#        docker image build -t wernerct/docker-graphql:latest .
-#        echo "Finalizando Build"
-#    - name: Push Docker Image
-#      run: |
-#        echo "Iniciando Build"
-#        docker image push wernerct/docker-graphql:0.0.2
-#        docker image push wernerct/docker-graphql:latest
-#        echo "Finalizando Build"
-##    - name: Build the Docker image
-##     run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build Docker Image
+      env:
+        New_Version: ${{ steps.version.outputs.version }}
+      run: |
+        echo "Iniciando Build"
+        docker image build -t wernerct/docker-graphql:$New_Version .
+        docker image build -t wernerct/docker-graphql:latest .
+        echo "Finalizando Build"
+    - name: Push Docker Image
+      env:
+        New_Version: ${{ steps.version.outputs.version }}
+      run: |
+        echo "Iniciando Build"
+        docker image push wernerct/docker-graphql:$New_Version
+        docker image push wernerct/docker-graphql:latest
+        echo "Finalizando Build"
+#    - name: Build the Docker image
+#     run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
